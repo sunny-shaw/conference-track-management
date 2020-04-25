@@ -19,4 +19,8 @@ class InputParser(private val input: String) {
     private fun readLength(inputArray: Array<String>) =
         inputArray[inputArray.size - 1].substringBefore(LENGTH_DELIMITER).toInt()
 
+    fun extractTitle(): String {
+        return input
+    }
+
 }

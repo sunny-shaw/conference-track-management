@@ -17,4 +17,11 @@ class InputParserTest {
 
         length shouldBe 45
     }
+
+    @Test
+    fun `should extract title for input containing lightning keyword`() {
+        val title = InputParser("Rails for Python Developers lightning").extractTitle()
+
+        title shouldBe "Rails for Python Developers lightning"
+    }
 }
