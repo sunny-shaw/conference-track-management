@@ -12,7 +12,7 @@ class InputParserTest {
     }
 
     @Test
-    fun `should return length if title ends with lenth in minutes`() {
+    fun `should return length if title ends with length in minutes`() {
         val length = InputParser("Overdoing it in Python 45min").extractLength()
 
         length shouldBe 45
@@ -23,5 +23,12 @@ class InputParserTest {
         val title = InputParser("Rails for Python Developers lightning").extractTitle()
 
         title shouldBe "Rails for Python Developers lightning"
+    }
+
+    @Test
+    fun `should extract title for input containing length in minutes`() {
+        val title = InputParser("Overdoing it in Python 45min").extractTitle()
+
+        title shouldBe "Overdoing it in Python"
     }
 }
