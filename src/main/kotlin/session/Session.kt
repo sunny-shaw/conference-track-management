@@ -58,3 +58,14 @@ class MorningSession(
         private const val AM = "AM"
     }
 }
+
+class AfternoonSession(
+    startTime: LocalTime,
+    endTime: LocalTime
+) : Session(startTime, endTime){
+    override fun getMeridiem() = PM
+
+    companion object {
+        private const val PM = "PM"
+    }
+}
