@@ -1,6 +1,8 @@
 package model
 
+import java.time.Duration
+
 class Talk(
     private val title: String,
-    private val length: Int
+    val duration: Duration
 )
