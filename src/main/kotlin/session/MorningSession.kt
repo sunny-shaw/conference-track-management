@@ -5,9 +5,11 @@ import java.lang.StringBuilder
 import java.time.Duration
 import java.time.LocalTime
 
-class MorningSession(private val startTime: LocalTime, endTime: LocalTime) {
+abstract class Session(private val startTime: LocalTime, endTime: LocalTime) {
     private val talks = mutableListOf<Talk>()
     private val totalDuration = Duration.between(startTime, endTime)
+
+    abstract fun getMeridiem(): String
 
     fun addTalk(talk: Talk): Boolean {
         return when {
@@ -39,10 +41,20 @@ class MorningSession(private val startTime: LocalTime, endTime: LocalTime) {
     }
 
     private fun formattedTalkInfo(talkStartTime: LocalTime, talk: Talk) =
-        "${talkStartTime}$AM ${talk.title} ${talk.duration.toMinutes()}$MIN"
+        "${talkStartTime}${getMeridiem()} ${talk.title} ${talk.duration.toMinutes()}$MIN"
+
+    companion object {
+        private const val  MIN = "min"
+    }
+}
+
+class MorningSession(
+    startTime: LocalTime,
+    endTime: LocalTime
+) : Session(startTime, endTime){
+    override fun getMeridiem() = AM
 
     companion object {
         private const val AM = "AM"
-        private const val MIN = "min"
     }
 }
