@@ -9,10 +9,6 @@ class MorningSession(private val startTime: LocalTime, endTime: LocalTime) {
     private val talks = mutableListOf<Talk>()
     private val totalDuration = Duration.between(startTime, endTime)
 
-    fun getTalkCount(): Int {
-        return talks.size
-    }
-
     fun addTalk(talk: Talk): Boolean {
         return when {
             availableDuration() >= talk.duration -> talks.add(talk)
@@ -38,7 +34,7 @@ class MorningSession(private val startTime: LocalTime, endTime: LocalTime) {
             summaryBuilder.append(formattedTalkInfo(talkStartTime, it)).appendln()
             talkStartTime = talkStartTime.plusMinutes(it.duration.toMinutes())
         }
-        
+
         return summaryBuilder.trimEnd().toString()
     }
 

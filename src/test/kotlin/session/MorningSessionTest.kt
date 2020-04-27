@@ -19,13 +19,6 @@ class MorningSessionTest {
     }
 
     @Test
-    fun `should have zero talks when initialize morning session`() {
-        val morningSession = MorningSession(startTime, endTime)
-
-        morningSession.getTalkCount() shouldBe 0
-    }
-
-    @Test
     fun `should be able to add talks for morning session`() {
         val morningSession = MorningSession(startTime, endTime)
         val kotlinTalk = Talk("Kotlin talk", Duration.ofMinutes(45))
@@ -33,7 +26,6 @@ class MorningSessionTest {
         val isTalkAdded = morningSession.addTalk(kotlinTalk)
 
         isTalkAdded shouldBe true
-        morningSession.getTalkCount() shouldBe 1
     }
 
     @Test
